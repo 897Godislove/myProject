@@ -1,7 +1,7 @@
 <?php require("include/db.php"); ?>
 <?php include("include/functions.php"); ?>
+<?php include("include/sessions.php"); ?>
 <?php
-session_start();
 if (!isset($_SESSION['email'])) {
     header("location: ../signup.login.html");
 } else {
@@ -12,27 +12,17 @@ if (!isset($_SESSION['email'])) {
     if (isset($_POST['submit'])) {
         global $connection;
         $title = $_POST['title'];
-        $title = mysqli_real_escape_string($connection, $title);
+        // $title = mysqli_real_escape_string($connection, $title);
         $author = $_SESSION['name'];
-        $author = mysqli_real_escape_string($connection, $author);
+        // $author = mysqli_real_escape_string($connection, $author);
         $category = $_POST['category_select'];
         $image = $_FILES['image'];
         $imagename = $image['name'];
         $imagename = rand(100, 1000) . "." . $imagename;
         $tmp_name = $image['tmp_name'];
         $email = $_SESSION['email'];
-
-        // print_r($_POST);
-        // echo '<br>';
-        // print_r($_FILES);
-        // echo '<br>';
-        // print_r($_FILES['image']);
-        // echo '<br>';
-
-
-
         $post_desc = $_POST['post_description'];
-        $post_desc = mysqli_real_escape_string($connection, $post_desc);
+        // $post_desc = mysqli_real_escape_string($connection, $post_desc);
 
         // TIME AND DATE FUNCTION 
         date_default_timezone_set("africa/lagos");
@@ -45,13 +35,13 @@ if (!isset($_SESSION['email'])) {
         moveimage($tmp_name, $imagename);
 
 
-        $query = "INSERT INTO `post`(datetime, title, category, author, image, postcontent, email) VALUES('$datetime', '$title', '$category', '$author', '$imagename', '$post_desc', '$email')";
+        $query = "INSERT INTO post (datetime, title, category, author, image, postcontent, email) VALUES('$datetime', '$title', '$category', '$author', '$imagename', '$post_desc', '$email')";
         $result = mysqli_query($connection, $query);
         if (!$result) {
             die("Error in Query<br>" . mysqli_error($connection));
         } else {
             // $_SESSION['success'] = "Category Added Successfully";
-            // redirect_to("basic.html");
+            redirect_to("blog.php?page=1");
         }
     }
 
@@ -174,13 +164,13 @@ if (!isset($_SESSION['email'])) {
                                     <input type="file" accept="image/*" class="form-control" name="image" id="imageselect">
                                 </div>
                                 <div class="form-group mt-4">
-                                    <label for="post"><span class="fieldinfo">Post:</label></span>
+                                    <label for="post"><span class="fieldinfo">Post Description</label></span>
                                     <textarea id="post" class="form-control" name="post_description" type="text"></textarea>
                                 </div>
                                 <div class="row py-4">
                                     <div class="col-lg-6 my-3">
                                         <button type="submit" name="submit" class="btn btn-block btn-success">
-                                            <i class="fas fa-check"></i> Publish
+                                            <i class="fas fa-check"></i> Post
                                         </button>
                                     </div>
                                     <div class="col-lg-6 my-3">

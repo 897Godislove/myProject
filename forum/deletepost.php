@@ -35,7 +35,9 @@ if (!isset($_SESSION['email'])) {
         } else {
             $targetpathtodeleteimage = "uploaded images/$imagetobeupdated";
             unlink($targetpathtodeleteimage);
-            redirect_to("blog.php");
+            header('location: myposts.php?email='.$_SESSION['email']);
+            
+
         }
     }
 
@@ -95,18 +97,19 @@ if (!isset($_SESSION['email'])) {
                 <div class="container-fluid px-4">
                     <div class="row align-items-center">
                         <div class="col-lg-12">
-                            <nav class="navbar navbar-expand-lg">                
+                            <nav class="navbar navbar-expand-lg">
                                 <a class="navbar-brand" href="index.php">
                                     <?php
-                                    if (isset($_SESSION['existingheadline'])) {
+                                    if (isset($_SESSION['nickname'])) {
                                     ?>
                                         <p class="lead h4">Hello @<span style="text-transform: lowercase;"><?php echo $_SESSION['nickname']; ?></span></p>
                                         <small><?php echo $_SESSION['existingheadline']; ?></small>
                                     <?php
                                         // print_r($existingID);
-                                    } else if (isset($_SESSION['name'])) {
+                                    } else {
                                     ?>
                                         <p class="lead h4">Hello <?php echo $_SESSION['name']; ?></p>
+                                        <p class="text-muted"> Please complete your registration</p>
                                     <?php
                                     }
                                     ?>
@@ -200,7 +203,7 @@ if (!isset($_SESSION['email'])) {
                                 </div>
                                 <div class="row py-4">
                                     <div class="col-lg-6 my-3">
-                                        <a href="blog.php?page=1" class="btn btn-warning btn-block"><i class="fas fa-arrow-left"></i>Back</a>
+                                        <a href="myposts.php?email=<?php echo $_SESSION['email']?>" class="btn btn-warning btn-block"><i class="fas fa-arrow-left"></i>Back</a>
                                     </div>
                                     <div class="col-lg-6 my-3">
                                         <button type="submit" name="submit" class="btn btn-block btn-danger">

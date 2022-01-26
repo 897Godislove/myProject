@@ -181,7 +181,7 @@
                         <img src="uploaded images/<?php echo $image?>" class="image-fluid card-img-top" alt="#image">
                         <div class="card-body">
                             <h4 class="card-title text-centerr"><?php echo $title; ?></h4>
-                            <small>Written by <span style="font-size: 20px; text-transform: capitalize; font-weight: 700;"><?php echo $author; ?></span> On <?php echo $datetime;?></small>
+                            <small>Written by <span style="font-size: 20px; text-transform: capitalize; font-weight: 700;"><a href="profile.php?email=<?php echo htmlentities($postemail); ?>"><?php echo $author; ?></a></span> On <?php echo $datetime;?></small>
                             <hr>
                             <p class="card-text"><?php  echo $post?></p>
 

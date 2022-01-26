@@ -2,6 +2,9 @@
 <?php include("include/functions.php"); ?>
 <?php require("include/sessions.php"); ?>
 <?php
+print_r($_SESSION)
+?>
+<?php
 
 if (!isset($_SESSION['email'])) {
     header("location: ../signup.login.html");
@@ -59,11 +62,11 @@ if (!isset($_SESSION['email'])) {
         $create_datetime = date("Y-m-d H:i:s");
 
         // Updating my database
-         
+
         $query = "UPDATE signup SET bio = '$bio',headline='$headline',nickname='$nickname',name='$name' WHERE id = $userid";
 
         // $_SESSION['errormessage'] = 'Successful';
-        
+
         $result = mysqli_query($connection, $query);
         if (!$result) {
             die("Error in Query<br>" . mysqli_error($connection));

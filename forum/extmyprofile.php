@@ -1,6 +1,7 @@
 <?php require("include/db.php"); ?>
 <?php include("include/functions.php"); ?>
-<?php require("include/sessions.php"); ?>
+<?php 
+require("include/sessions.php"); ?>
 <?php
 if (!isset($_SESSION['email'])) {
 	header("location: ../signup.login.html");
@@ -103,6 +104,9 @@ if (!isset($_SESSION['email'])) {
 	</head>
 
 	<body>
+
+		<!-- the header -->
+		<?php include("headerNew.php"); ?>
 		<!--<div class="se-pre-con"></div>-->
 		<div class="theme-layout">
 
@@ -295,7 +299,7 @@ if (!isset($_SESSION['email'])) {
 				</nav>
 			</div><!-- responsive header -->
 
-			<div class="topbar stick">
+			<!-- <div class="topbar stick">
 				<div class="logo">
 					<a title="" href="newsfeed.html"><img src="images/logo.png" alt=""></a>
 				</div>
@@ -361,7 +365,7 @@ if (!isset($_SESSION['email'])) {
 							<a href="#" title="Home" data-ripple=""><i class="ti-search"></i></a>
 							<div class="searched">
 								<form method="post" class="form-search">
-									<input type="text" placeholder="Search Friend">
+									<input type="text" placeholder="Search">
 									<button data-ripple><i class="ti-search"></i></button>
 								</form>
 							</div>
@@ -522,7 +526,7 @@ if (!isset($_SESSION['email'])) {
 					</div>
 					<span class="ti-menu main-menu" data-ripple=""></span>
 				</div>
-			</div><!-- topbar -->
+			</div>topbar -->
 
 			<!-- <section>
 			<div class="feature-photo">
@@ -618,14 +622,14 @@ if (!isset($_SESSION['email'])) {
 														<i class="ti-info-alt"></i>
 														<a href="edit-profile-basic.html" title="">Basic info</a>
 													</li>
-													<li>
+													<!-- <li>
 														<i class="ti-mouse-alt"></i>
 														<a href="edit-work-eductation.html" title="">Education & Work</a>
 													</li>
 													<li>
 														<i class="ti-heart"></i>
 														<a href="edit-interest.html" title="">My interests</a>
-													</li>
+													</li> -->
 													<li>
 														<i class="ti-settings"></i>
 														<a href="edit-account-setting.html" title="">account setting</a>
@@ -765,6 +769,46 @@ if (!isset($_SESSION['email'])) {
 													</div>
 												</div>
 											</div>
+											<!-- <div class="widget stick-widget">
+												<h4 class="widget-title">Who's follownig</h4>
+												<ul class="followers">
+													<li>
+														<figure><img src="images/resources/friend-avatar2.jpg" alt=""></figure>
+														<div class="friend-meta">
+															<h4><a href="time-line.html" title="">Kelly Bill</a></h4>
+															<a href="#" title="" class="underline">Add Friend</a>
+														</div>
+													</li>
+													<li>
+														<figure><img src="images/resources/friend-avatar4.jpg" alt=""></figure>
+														<div class="friend-meta">
+															<h4><a href="time-line.html" title="">Issabel</a></h4>
+															<a href="#" title="" class="underline">Add Friend</a>
+														</div>
+													</li>
+													<li>
+														<figure><img src="images/resources/friend-avatar6.jpg" alt=""></figure>
+														<div class="friend-meta">
+															<h4><a href="time-line.html" title="">Andrew</a></h4>
+															<a href="#" title="" class="underline">Add Friend</a>
+														</div>
+													</li>
+													<li>
+														<figure><img src="images/resources/friend-avatar8.jpg" alt=""></figure>
+														<div class="friend-meta">
+															<h4><a href="time-line.html" title="">Sophia</a></h4>
+															<a href="#" title="" class="underline">Add Friend</a>
+														</div>
+													</li>
+													<li>
+														<figure><img src="images/resources/friend-avatar3.jpg" alt=""></figure>
+														<div class="friend-meta">
+															<h4><a href="time-line.html" title="">Allen</a></h4>
+															<a href="#" title="" class="underline">Add Friend</a>
+														</div>
+													</li>
+												</ul>
+											</div>who's following -->
 										</aside>
 									</div><!-- sidebar -->
 								</div>

@@ -76,6 +76,9 @@ $(document).ready(function () {
     $("#loginform").submit(function (e) { 
         e.preventDefault();
 
+            // This is to show judikay how to set a new attr value that will occur right after the form is submitted
+            // $(this).attr('new_attr', 'show_judikay');
+
             $("#login_info").hide();
             var url = $(this).attr("action");
             var postdata = $(this).serialize();
@@ -88,7 +91,7 @@ $(document).ready(function () {
                             console.log(data);
                             if (data == "Login Successful") {
                                 setTimeout( () => {
-                                    window.location.href = "forum/blog.php"; 
+                                    window.location.href = "forum/blog_new.php"; 
                                  }, 1000);       
                             }
                         },
@@ -100,7 +103,6 @@ $(document).ready(function () {
             // THIS IS FOR PASSWORD RECOVERY
 
 $(document).ready(function () {
-    console.log("This is a normal text")
     $("#recoveryForm").submit(function (e) { 
         e.preventDefault();
         email = $("#email_address").val();
@@ -169,4 +171,6 @@ $(document).ready(function () {
 //     });
 // });
 
-        
+
+
+

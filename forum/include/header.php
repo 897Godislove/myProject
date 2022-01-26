@@ -50,7 +50,7 @@ if (isset($_SESSION['adminuser'])) {
 } elseif (isset($_SESSION['email'])) {
     global $connection;
     $userid = $_SESSION['id'];
-    $sql = "SELECT * FROM `signup` where id='$userid'";
+    $sql = "SELECT * FROM signup where id='$userid'";
     $result = mysqli_query($connection, $sql);
     if (!$result) {
         die("Error in conneciton " . mysqli_error($connection));

@@ -1,7 +1,11 @@
-<?php require("include/db.php"); ?>
+<?php session_start();
+require("include/db.php"); ?>
 <?php include("include/functions.php"); ?>
+<?php 
+    print_r($_SESSION); 
+?>
 <?php
-session_start();
+
 if (!isset($_SESSION['existingheadline'])) {
     header("location: profile.php");
 } else if (!isset($_SESSION['email'])) {
@@ -115,7 +119,7 @@ if (!isset($_SESSION['existingheadline'])) {
                                             <a class="page-scroll" href="addnewpost.php"><i class="fas fa-plus-square text-primary"></i> Add Post</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="page-scroll" href="myposts.php?email=<?php echo $_SESSION['email']; ?>"><i class="fas fa- text-primary"></i> My Blogs</a>
+                                            <a class="page-scroll" href="myposts.php?email=<?php echo $_SESSION['email']; ?>"><i class="fas fa-blog text-primary"></i> My Blogs</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="page-scroll active" href="blog.php?page=1"><i class="fas fa-blog"></i> Live Blogs</a>
@@ -127,7 +131,7 @@ if (!isset($_SESSION['existingheadline'])) {
                                             <a class="page-scroll logout" href="logoutforliveblog.php"><i class="fas fa-user-times "></i> Logout</a>
                                         </li>
                                         <!-- THE SEARCH BAR -->
-                                        <form class="form-inline d-none d-sm-block" method="post">
+                                        <form class="form-inline d-none d-sm-block form-search" method="post">
                                             <div class="form-group">
                                                 <input type="text" name="search" class="form-control" placeholder="Search Here">
                                                 <button type="submit" name="searchbtn" class="btn btn-primary">Go</button>
@@ -161,7 +165,7 @@ if (!isset($_SESSION['existingheadline'])) {
                         if ($count == 0) {
                             echo '<h1>NO RESULT</h1>';
                         }
-                    } elseif (isset($_GET['page'])) {
+                    } elseif (isset($_GET['page'])) { 
                         $page = $_GET['page'];
                         if ($page == 0 || $page < 1) {
                             $showpostfrom = 0;
@@ -169,7 +173,7 @@ if (!isset($_SESSION['existingheadline'])) {
                             $showpostfrom = ($page * 5) - 5;
                         }
 
-                        $sqlpage = "SELECT * FROM `post` order by id desc LIMIT $showpostfrom,5";
+                        $sqlpage = "SELECT * FROM post order by id desc LIMIT $showpostfrom,5";
                         $result = mysqli_query($connection, $sqlpage);
                     }
                     // QUERY WHEN CATEGORY IS ACTIVE IN THE URL TAB
@@ -193,8 +197,9 @@ if (!isset($_SESSION['existingheadline'])) {
                         $title = htmlentities($title);
                         $category = $rows['category'];
                         $category = htmlentities($category);
-                        $author = $rows['author'];
-                        $author = htmlentities($author);
+                        // $author = $rows['author'];
+                        // $author = htmlentities($author);
+                        $author=$_SESSION['name'];
                         $image = $rows['image'];
                         $image = htmlentities($image);
                         $post = $rows['postcontent'];
@@ -206,7 +211,7 @@ if (!isset($_SESSION['existingheadline'])) {
                             <div class="card mt-5" style="position: relative;">
                                 <div style=" float: left; font-size: 20px; margin-bottom: -40px; position: absolute; color: white;" class="text-white bg-danger"><?php echo $category; ?></div>
                                 <a href="fullpost.php?id=<?php echo $id; ?>">
-                                    <img src="uploaded images/<?php echo $image ?>" class="img-fluid card-img-top" alt="#image">
+                                    <img src="uploaded images/<?php echo $image ?>" class="img-fluid card-img-top" alt="">
                                 </a>
                                 <div class="card-body">
                                     <h4 class="card-title text-centerr"><?php echo $title; ?></h4>
@@ -236,7 +241,7 @@ if (!isset($_SESSION['existingheadline'])) {
                                                                 $post = substr($post, 0, 150) . "...";
                                                             }
                                                             echo $post ?></p>
-                                    <a class="readmore" href="fullpost.php?id=<?php echo $id; ?>" style="float:right"><span class="text-dark btn btn-inf border-dark readmore">Read More >></span></a>
+                                    <a class="readmore" href="fullpost.php?id=<?php echo $id; ?>" style="float:right"><span class="text-dark btn btn-info border-dark readmore">Read More >></span></a>
 
                                 </div>
                             </div>

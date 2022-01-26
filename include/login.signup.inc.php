@@ -98,6 +98,7 @@
         // Check if user  exist in the database
         $query    = "SELECT * FROM `signup` WHERE email='$email'";
 
+
         $result = mysqli_query($connection, $query);
         if (!$result) {
             die ( "Error in query".mysqli_error($connection) );
@@ -117,8 +118,10 @@
                         $_SESSION['id'] = $row['id'];
                         $_SESSION['name'] = $row['name'];
                         $_SESSION['email'] = $row['email'];
-                        // $_SESSION['password'] = $row['password'];
                         $_SESSION['status'] = $row['status'];
+                        $_SESSION['existingheadline'] = $row['headline'];
+
+                
                         
                         echo 'Login Successful';
 
